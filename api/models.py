@@ -5,7 +5,7 @@ import uuid
 
 def upload_avatar_path(instance, filename):
     ext = filename.split('.')[-1]
-    return '/'.join(['avatars', str(instance.user_profile.id)+str(".")+str(ext)])
+    return '/'.join(['avatars', str(instance.user_profile.id) + str(".") + str(ext)])
 
 
 class Profile(models.Model):
@@ -39,7 +39,8 @@ class Task(models.Model):
     status = models.CharField(max_length=40, choices=STATUS, default='1')
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     estimate = models.IntegerField(validators=[MinValueValidator(0)])
-    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='responsible')
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='owner')
+    responsible = models.ForeignKey(User, on_delete=models.CASCADE, related_name='responsible')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
